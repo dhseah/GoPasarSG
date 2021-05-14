@@ -1,5 +1,5 @@
 # GoPasarSG
-Submission for Project GoLive, Shopee Go School Run 2.
+Submission for Project GoLive, Shopee Go School Run 2.\
 This project is completed by Oon Xinni, Seah Dick Hong, Tho Yan Bo.
 
 To run the web application:
