@@ -1,0 +1,71 @@
+{{template "base" .}}
+
+{{define "title"}}Signup{{end}}
+
+{{define "main"}}
+<form action='/signup' method='POST' novalidate>
+    {{with .Form}}
+    <div>
+        <label>UserID:</label>
+        {{with .Errors.Get "userid"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='userid' value='{{.Get "userid"}}'>
+    </div>
+    <div>
+        <label>Password:</label>
+        {{with .Errors.Get "password"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='password' name='password'>
+    </div>
+    <div>
+        <label>First Name:</label>
+        {{with .Errors.Get "firstname"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='firstname' value='{{.Get "firstname"}}'>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        {{with .Errors.Get "lastname"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='lastname' value='{{.Get "lastname"}}'>
+    </div>
+    <div>
+        <label>Phone No.:</label>
+        {{with .Errors.Get "phone"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='phone' value='{{.Get "phone"}}'>
+    </div>
+    <div>
+        <label>Email:</label>
+        {{with .Errors.Get "email"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='email' name='email' value='{{.Get "email"}}'>
+    </div>
+    <div>
+        <label>Address:</label>
+        {{with .Errors.Get "address"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='address' value='{{.Get "address"}}'>
+    </div>
+    <div>
+        <label>SignUp As:</label>
+        {{with .Errors.Get "signupas"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        {{$exp := or (.Get "signupas") "buyer"}}
+        <input type='radio' name='signupas' value='user' {{if (eq $exp "buyer" )}}checked{{end}}> User
+        <input type='radio' name='signupas' value='seller' {{if (eq $exp "seller" )}}checked{{end}}> Seller
+    </div>
+    <div>
+        <input type='submit' value='Sign Up'>
+    </div>
+    {{end}}
+</form>
+{{end}}

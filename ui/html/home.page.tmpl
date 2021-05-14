@@ -1,0 +1,49 @@
+{{template "base" .}}
+
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+<div>
+    <form action='/product/search' method='GET'>
+        <div>
+            <label>Search:</label>
+            <input id="searchbar" type='text' name='text' placeholder='Enter your search here.'>
+            <input type='submit' value='Search'>
+        </div>
+    </form>
+    <form id="filter">
+        <label>Category:</label>
+        {{with .Categories}}
+        <input id="catlist" list="category" name="category">
+        <datalist id="category">
+            {{range .}}
+            <option value={{.}}>
+                {{end}}
+        </datalist>
+        {{end}}
+        <label>Sort By:</label>
+        {{with .SortBy}}
+        <input id="sortbylist" list="sortby" name="sortby">
+        <datalist id="sortby">
+            {{range .}}
+            <option value={{.}}>
+                {{end}}
+        </datalist>
+        <input type='submit' value='Submit'>
+        {{end}}
+    </form>
+</div><br>
+{{if .Products}}
+{{range .Products}}
+<div>
+    <p>Name: <a href='/product?productid={{.ProductID}}'>{{.Name}}</a></p>
+    <p>Price: {{.Price}}</p>
+    <p>Units Sold: {{.UnitSold}}</p>
+    <p>Rating: {{.Rating}}</p>
+    <p>No. Rating: {{.RatingNum}}</p>
+    <p>SellerID: <a href='/seller?sellerid={{.SellerID}}'>{{.SellerID}}</a></p>
+    <hr>
+</div>
+{{end}}
+{{end}}
+{{end}}

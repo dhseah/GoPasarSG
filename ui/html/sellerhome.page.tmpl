@@ -1,0 +1,28 @@
+{{template "base" .}}
+
+{{define "title"}}User Products{{end}}
+
+{{define "main"}}
+    <h2> Product Listing</h2>
+    <form action="/product/create" method="GET">
+        <input type="submit" value="List new product">
+    </form><br>
+    {{if .Products}}
+        {{range .Products}}
+        <h1> Product ID: {{.ProductID}}</h1>
+        <p> Name: <a href='/product?productid={{.ProductID}}'>{{.Name}}</a></p>
+        <p> Product Price: SGD {{.Price}}</p>
+        <p> Discount: {{.DiscountID | getDisc }}</p>
+        <p>Balance: {{.Inventory}}</p>
+        <form action="/product/delete" method="GET">
+            <input type="hidden" name="productid" value={{.ProductID}}>
+            <input class="cartbutton" type="submit" value="Delete">
+        </form>
+        <form action='/product/update' method='GET'>
+                <input type="hidden" name="productid" value ={{.ProductID}} />
+                <input class="cartbutton" type="submit" value="Update" />
+        </form>
+        <hr>
+    {{end}}
+{{end}}
+{{end}}

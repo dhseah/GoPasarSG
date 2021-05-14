@@ -1,0 +1,33 @@
+{{template "base" .}}
+
+{{define "title"}}Your Orders{{end}}
+
+{{define "main"}}
+<h2> My Orders</h2>
+{{$seller := .IsSeller}}
+{{if not .Orders}}
+<p>You do not have any orders yet.</p>
+{{else}}
+{{range .Orders}}
+<div>
+    <h1> Order ID: {{.OrderID}}</h1>
+    <p> Buyer: {{.UserID}}</p>
+    <p> Product: {{.Product.Name}}</p>
+    <p> Quantity: {{.Qty}}</p>
+    <p> Status: <span id ="status">{{.Status|getStatus}}</span></p>
+    </form>
+    {{if $seller}}
+    {{if eq .Status 0}}
+    <form action='/order?orderid={{.OrderID}}&status=1' method='POST'>
+        <input class="cartbutton" type="submit" value="Accept">
+    </form>
+    <form action='/order?orderid={{.OrderID}}&status=2' method='POST'>
+        <input class="cartbutton" type="submit" value="Cancel">
+    </form>
+    {{end}}
+    {{end}}
+    <hr>
+</div>
+{{end}}
+{{end}}
+{{end}}

@@ -1,0 +1,19 @@
+{{template "base" .}}
+
+{{define "title"}}User Products{{end}}
+
+{{define "main"}}
+    {{$seller:=index .Products 0}}
+    <h2> Product Listing of {{$seller.SellerID}}</h2>
+    {{if .Products}}
+        {{range .Products}}
+        
+        <h1> Product ID: {{.ProductID}}</h1>
+        <p> Name: <a href='/product?productid={{.ProductID}}'>{{.Name}}</a></p>
+        <p> Product Price: SGD {{.Price}}</p>
+        <p> Discount: {{.DiscountID | getDisc }}</p>
+        <p>Balance: {{.Inventory}}</p>
+        <hr>
+    {{end}}
+{{end}}
+{{end}}

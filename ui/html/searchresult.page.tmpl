@@ -1,0 +1,25 @@
+{{template "base" .}}
+
+{{define "title"}}Search Results{{end}}
+
+{{define "main"}}
+    <h2> Display Search Results</h2>
+    {{if .Products}}
+        {{range .Products}}
+        <div>
+        <h1> Product ID: {{.ProductID}}</h1>
+        <p> Name: <a href='/product?productid={{.ProductID}}'>{{.Name}}</a></p>
+        <p> Product Price: SGD {{.Price}}</p>
+        <p> Seller: <a href='/seller?sellerid={{.SellerID}}'>{{.SellerID}}</a></p>
+        <p> Discount: {{.DiscountID | getDisc }}</p>
+        <p> Balance: {{.Inventory}}</p>
+        <p> Description:<br> {{.Desc}}</p>
+        <hr>
+        {{end}}
+    {{else}}
+        <div>
+            <p> Sorry, we did not find any matches to your search!</p>
+        </div>
+    {{end}}
+    
+{{end}}

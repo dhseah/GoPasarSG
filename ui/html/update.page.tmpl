@@ -1,0 +1,64 @@
+{{template "base" .}}
+
+{{define "title"}}Update {{.Product.Name}}{{end}}
+
+{{define "main"}}
+<form action='/product/update?productid={{.Product.ProductID}}' method='POST'>
+     <div>
+         <label>Product Name:</label>
+         {{with .Form.Errors.Get "name"}}
+             <label class='error'>{{.}}</label>
+         {{end}}
+         <input type='text' name='name' value='{{.Product.Name}}' >
+     </div>
+     <div>
+         <label>Description:</label>
+          {{with .Form.Errors.Get "description"}}
+             <label class='error'>{{.}}</label>
+         {{end}}
+         <textarea name='description'>{{.Product.Desc}}</textarea>
+     </div>
+     <div>
+        <label>Keyword(s):</label>
+        {{with .Form.Errors.Get "keyword"}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='keyword' value='{{.Product.Keyword}}' >
+    </div>
+     <div>
+         <label>Price:</label>
+         {{with .Form.Errors.Get "price"}}
+             <label class='error'>{{.}}</label>
+         {{end}} 
+         <input type='text' name='price' value='{{.Product.Price}}' >
+     </div>
+     <div>
+         <label>Inventory QTY:</label>
+         {{with .Form.Errors.Get "inventory"}}
+             <label class='error'>{{.}}</label>
+         {{end}} 
+         <input type='text' name='inventory' value='{{.Product.Inventory}}'>
+     </div>
+     <div>
+         <label>Category:</label>
+         <input list="category" name="category" value="{{.Product.CategoryID | getCat }}">
+         <datalist id="category">
+             {{range .Categories}}
+             <option value={{.}}>
+             {{end}}
+         </datalist>
+     </div>
+     <div>
+         <label>Discount:</label>
+         <input list="discount" name="discount" value="{{.Product.DiscountID | getDisc }}">
+         <datalist id="discount">
+             {{range .Discounts}}
+             <option value={{.}}>
+             {{end}}
+         </datalist>
+     </div>
+     <div>
+         <input type='submit' value='Submit'>
+     </div>
+</form>
+{{end}}

@@ -1,0 +1,63 @@
+{{template "base" .}}
+
+{{define "title"}}Add a New Product{{end}}
+
+{{define "main"}}
+<form action='/product/create' method='POST'>
+    {{with .Form}}
+    <div>
+        <label>Product Name:</label>
+        {{with .Errors.Get "name"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='name' value='{{.Get "name"}}'>
+    </div>
+    <div>
+        <label>Description:</label>
+        {{with .Errors.Get "description"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <textarea name='description'>{{.Get "description"}}</textarea>
+    </div>
+    <div>
+        <label>Price:</label>
+        {{with .Errors.Get "price"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='price' value='{{.Get "price"}}'>
+    </div>
+    <div>
+        <label>Inventory Qty:</label>
+        {{with .Errors.Get "inventory"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='inventory' value='{{.Get "inventory"}}'>
+    </div>
+    {{end}}
+    <div>
+        <label>Category:</label>
+        {{with .Categories}}
+        <input list="category" name="category">
+        <datalist id="category">
+            {{range .}}
+            <option value={{.}}>
+                {{end}}
+        </datalist>
+        {{end}}
+    </div>
+    <div>
+        <label>Discount:</label>
+        {{with .Discounts}}
+        <input list="discount" name="discount">
+        <datalist id="discount">
+            {{range .}}
+            <option value={{.}}>
+                {{end}}
+        </datalist>
+        {{end}}
+    </div>
+    <div>
+        <input type='submit' value='Submit'>
+    </div>
+</form>
+{{end}}

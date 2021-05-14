@@ -1,0 +1,24 @@
+{{template "base" .}}
+
+{{define "title"}}Login{{end}}
+
+{{define "main"}}
+<form action='/login' method='POST' novalidate>
+    {{with .Form}}
+    {{with .Errors.Get "unauthorized"}}
+    <div class='error'>{{.}}</div>
+    {{end}}
+    <div>
+        <label>UserID:</label>
+        <input type='text' name='userid' value='{{.Get "userid"}}'>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type='password' name='password'>
+    </div>
+    <div>
+        <input type='submit' value='Login'>
+    </div>
+    {{end}}
+</form>
+{{end}}

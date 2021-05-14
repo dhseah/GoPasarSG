@@ -1,0 +1,12 @@
+{{template "base" .}}
+
+{{define "title"}}Profile {{end}}
+
+{{define "main"}}
+<form action="/shoppingcart/" method="GET">
+    <input type="submit" value="Shopping Cart">
+</form>
+<form action='/orders' method='GET'>
+    <input type="submit" value="Orders" />
+</form>
+{{end}}

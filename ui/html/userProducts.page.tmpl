@@ -1,0 +1,22 @@
+{{template "base" .}}
+
+{{define "title"}}User Products{{end}}
+
+{{define "main"}}
+<h2> Product Listing</h2>
+{{if .Products}}
+{{range .Products}}
+<div>
+    <p> Product ID: {{.ID}}</p><br>
+    <p> Product Name: {{.Name}}</p><br>
+    <form action="/product/delete/{{.ID}}" method="GET">
+        <input type="submit" value="delete">
+    </form>
+    <form action="/product/update/{{.ID}}" method="GET">
+        <input type="submit" value="update">
+    </form>
+    <hr>
+</div>
+{{end}}
+{{end}}
+{{end}}

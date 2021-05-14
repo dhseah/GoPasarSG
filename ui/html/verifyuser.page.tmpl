@@ -1,0 +1,19 @@
+{{template "base" .}}
+
+{{define "title"}}OTP Verification{{end}}
+
+{{define "main"}}
+<form action='/verifyuser' method='POST'>
+    {{with .Form}}
+        <label>Please enter your OTP:</label>
+        {{with .Errors.Get "OTP"}}
+        <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='OTP' value='{{.Get "OTP"}}'>
+        <input class="cartbutton" type=submit value="Verify">
+    {{end}}
+</form>
+<form action='/verifyuser/resendotp' method='POST'>
+    <input class="cartbutton" type=submit value="Resend OTP">
+</form>
+{{end}}
